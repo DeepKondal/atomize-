@@ -7,7 +7,7 @@ services:
     ports:
       - "5001:5001"
     environment:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Use GitHub Secret here
+      - OPENAI_API_KEY=${OPENAI_API_KEY}  # Use environment variable here
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_characters"]
       interval: 30s
@@ -20,7 +20,7 @@ services:
     ports:
       - "5002:5001"
     environment:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Use GitHub Secret here
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_introduction"]
       interval: 30s
@@ -33,13 +33,12 @@ services:
     ports:
       - "5003:5001"
     environment:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Use GitHub Secret here
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_theme"]
       interval: 30s
       timeout: 10s
       retries: 3
-
 
   sentiment_service:
     build: ./sentiment_service
@@ -47,7 +46,7 @@ services:
     ports:
       - "5004:5001"
     environment:
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Use GitHub Secret here
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_sentiment"]
       interval: 30s
@@ -66,7 +65,7 @@ services:
         condition: service_healthy
       theme_service:
         condition: service_healthy
-      semtiment_service:
+      sentiment_service:
         condition: service_healthy
     environment:
       - PYTHONUNBUFFERED=1  # Ensures real-time logging in Docker logs

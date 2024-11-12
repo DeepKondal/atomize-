@@ -33,9 +33,8 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           docker-compose up --build -d
-          docker-compose ps  # Check the status of each container
-          docker-compose logs  # Retrieve container logs to identify issues
-          sleep 10
-          # Add any test commands here if necessary
+          docker-compose ps
+          docker-compose logs
           docker-compose down
+
 
