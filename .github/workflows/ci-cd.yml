@@ -37,4 +37,7 @@ jobs:
           docker-compose logs
           docker-compose down
 
+      - name: Tear down Docker environment
+        run: docker-compose down
+
 
