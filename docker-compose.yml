@@ -6,8 +6,8 @@ services:
     container_name: characters_service
     ports:
       - "5001:5001"
-    env_file:
-      - ./characters_service/.env
+    environment:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Use GitHub Secret here
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_characters"]
       interval: 30s
@@ -19,8 +19,8 @@ services:
     container_name: introduction_service
     ports:
       - "5002:5001"
-    env_file:
-      - ./introduction_service/.env
+    environment:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Use GitHub Secret here
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_introduction"]
       interval: 30s
@@ -32,8 +32,8 @@ services:
     container_name: theme_service
     ports:
       - "5003:5001"
-    env_file:
-      - ./theme_service/.env
+    environment:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Use GitHub Secret here
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_theme"]
       interval: 30s
@@ -46,8 +46,8 @@ services:
     container_name: sentiment_service
     ports:
       - "5004:5001"
-    env_file:
-      - ./sentiment_service/.env
+    environment:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Use GitHub Secret here
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_sentiment"]
       interval: 30s
