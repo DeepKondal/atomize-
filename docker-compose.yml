@@ -39,6 +39,20 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
+
+  sentiment_service:
+    build: ./sentiment_service
+    container_name: sentiment_service
+    ports:
+      - "5004:5001"
+    env_file:
+      - ./sentiment_service/.env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_sentiment"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
   
   streamlit_ui:
     build: ./streamlit_ui
@@ -52,7 +66,7 @@ services:
         condition: service_healthy
       theme_service:
         condition: service_healthy
-      #semtiment_service:
-      #  condition: service_healthy
+      semtiment_service:
+        condition: service_healthy
     environment:
       - PYTHONUNBUFFERED=1  # Ensures real-time logging in Docker logs

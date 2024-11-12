@@ -7,14 +7,14 @@ microservice_urls = {
     "characters": "http://characters_service:5001/extract_characters",
     "introduction": "http://introduction_service:5001/extract_introduction",
     "theme": "http://theme_service:5001/extract_theme",
-    #"sentiment": "http://sentiment_service:5001/extract_sentiment"  
+    "sentiment": "http://sentiment_service:5001/extract_sentiment"  
 }
 
 task_map = {
     "Theme": "theme",
     "Characters": "characters",
     "Introduction": "introduction",
-    #"Sentiment": "sentiment"
+    "Sentiment": "sentiment"
 }
 
 st.set_page_config(page_title="Atomize+ PDF Analysis App", page_icon="📄", layout="centered")
@@ -33,8 +33,8 @@ st.write("Enter or paste your text below, and select the information you want to
 
 # Input box for text and dropdown for task selection
 article = st.text_area("Enter text here", height=200, placeholder="Type or paste your text here...")
-task_option = st.selectbox("Choose Task:", ["Characters", "Introduction", "Theme"])
-#task_option = st.selectbox("Choose Task:", ["Characters", "Introduction", "Theme","Sentiment"])
+#task_option = st.selectbox("Choose Task:", ["Characters", "Introduction", "Theme"])
+task_option = st.selectbox("Choose Task:", ["Characters", "Introduction", "Theme","Sentiment"])
 
 # Analyze button for text input
 if st.button("🔍 Analyze Text"):
@@ -62,8 +62,8 @@ st.write("Upload a PDF document, specify the page range, and select the type of 
 uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
 
 # PDF Task Selection Dropdown
-pdf_task_option = st.selectbox("Choose PDF Task:", ["Characters", "Introduction", "Theme"])
-#pdf_task_option = st.selectbox("Choose PDF Task:", ["Characters", "Introduction", "Theme","Sentiment"])
+#pdf_task_option = st.selectbox("Choose PDF Task:", ["Characters", "Introduction", "Theme"])
+pdf_task_option = st.selectbox("Choose PDF Task:", ["Characters", "Introduction", "Theme","Sentiment"])
 
 # Extract text from PDF function with cleaning
 def extract_text_from_pdf(file, start_page, end_page):
