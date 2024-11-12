@@ -7,7 +7,7 @@ services:
     ports:
       - "5001:5001"
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}  # Use environment variable here
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_characters"]
       interval: 30s
@@ -52,7 +52,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
-  
+
   streamlit_ui:
     build: ./streamlit_ui
     container_name: streamlit_ui
@@ -68,4 +68,4 @@ services:
       sentiment_service:
         condition: service_healthy
     environment:
-      - PYTHONUNBUFFERED=1  # Ensures real-time logging in Docker logs
+      - PYTHONUNBUFFERED=1
