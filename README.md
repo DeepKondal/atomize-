@@ -14,5 +14,11 @@
 9. After completion, open http://localhost:8501 in the browser
 
 (If running on VM/Cloud)
+
+Add the following secrets to your Github:
+DOCKER_USERNAME: your_docker_username
+DOCKER_PASSWORD: your_docker_password
+OPENAI_API_KEY: your_openai_api_key
+
 Since all the environment variables and secrets are on github, it should work as it is with the following command -->>> <<docker-compose -p atomize up --build -d>>
 and the CI/CD established
