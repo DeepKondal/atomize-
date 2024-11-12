@@ -8,6 +8,8 @@ services:
       - "5001:5001"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+    #env_file:
+    #  - ./characters_service/.env
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_characters"]
       interval: 30s
@@ -21,6 +23,8 @@ services:
       - "5002:5001"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+    #env_file:
+    #  - ./introduction_service/.env
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_introduction"]
       interval: 30s
@@ -34,6 +38,8 @@ services:
       - "5003:5001"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+    #env_file:
+    #  - ./theme_service/.env
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_theme"]
       interval: 30s
@@ -47,6 +53,8 @@ services:
       - "5004:5001"
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+    #env_file:
+    #  - ./sentiment_service/.env
     healthcheck:
       test: ["CMD", "curl", "-f", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"text\":\"Health check\"}", "http://localhost:5001/extract_sentiment"]
       interval: 30s
