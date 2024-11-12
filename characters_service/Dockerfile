@@ -9,7 +9,7 @@ COPY . /app
 
 
 # Copy .env file into the image
-COPY .env /app/.env
+#COPY .env /app/.env
 
 # Set environment variables directly in Docker
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
