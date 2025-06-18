@@ -144,7 +144,6 @@ Services are deployed independently using Azure App Services and Azure Blob + Co
 
 ##  Future Scope
 
-- Add emotion/sentiment extraction service  
 - Enable multi-language summarization  
 - Optimize calls using batching/token control  
 - Add user authentication and logging features  
